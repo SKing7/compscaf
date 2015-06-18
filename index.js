@@ -17,6 +17,7 @@ program
   .option('-t, --tpl  [name]', 'init a tpl   file, default is main ')
   .option('-s, --scss [name]', 'init a scss  file, default is base ')
   .option('-j, --js   [name]', 'init a entry file, default is index')
+  .option('-a, --all', 'init all file[tpl/scss/js]')
   .option('-f, --force', 'init a compoment, remove the old one if extis')
   .option('-c, --clear', 'clear a component, remove all file in the component dir')
   .parse(process.argv);
@@ -79,7 +80,7 @@ function starter() {
         rmDir(fullPath);
     }
     function initFiles(type, defaultName, prefix, required) {
-        var o = program[type];
+        var o = program[type] || program.all;
         if (!o) return;
         var targetName;
         var isError = false;
