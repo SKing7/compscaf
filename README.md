@@ -9,7 +9,6 @@
 
     -o, --comp [name]:  init a compoment : required
     -r, --cwd  [name]:  set a cwd, default is src/comp
-    -b, --base [name]:  set a cwd, default is src/comp
     -t, --tpl  [name]:  init a tpl   file, default [name] is main 
     -s, --scss [name]:  init a scss  file, default [name] is base 
     -j, --js   [name]:  init a entry file, default [name] is index
