@@ -21,3 +21,16 @@
     ./node_modules/.bin/compscaf -r './' -o test -c 
     ./node_modules/.bin/compscaf -r './' -o test -fjts 
     ./node_modules/.bin/compscaf -r './' -o test -s common -j entry
+
+
+##test
+
+```shell
+
+    ./node_modules/.bin/compscaf -rf 'src/comp' -o searchbox -jst
+    #tree src/comp/searchbox
+    src/comp/searchbox/
+    ├── base.scss
+    ├── index.js
+    └── main.html
+```
