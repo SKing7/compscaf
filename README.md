@@ -3,12 +3,12 @@
 
 ##usage
 
-    ./node_modules/index.js
+    npm install compscaf
 
 ##option
 
     -o, --comp [name]:  init a compoment : required
-    -r, --cwd  [name]:  set a cwd, default is src/comp
+    -r, --cwd  [name]:  set a cwd, default is src/comp, relative to process.cwd()
     -t, --tpl  [name]:  init a tpl   file, default [name] is main 
     -s, --scss [name]:  init a scss  file, default [name] is base 
     -j, --js   [name]:  init a entry file, default [name] is index
@@ -17,7 +17,7 @@
 
 ##sample
     
-    ./node_modules/index.js -r './' -o test 
-    ./node_modules/index.js -r './' -o test -c 
-    ./node_modules/index.js -r './' -o test -fjts 
-    ./node_modules/index.js -r './' -o test -s common -j entry
+    ./node_modules/.bin/compscaf -r './' -o test 
+    ./node_modules/.bin/compscaf -r './' -o test -c 
+    ./node_modules/.bin/compscaf -r './' -o test -fjts 
+    ./node_modules/.bin/compscaf -r './' -o test -s common -j entry
