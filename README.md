@@ -1,7 +1,7 @@
 #组件化脚手架
 内部组件化脚手架程序
 
-##useage
+##usage
 
     ./node_modules/index.js
 
