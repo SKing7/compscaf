@@ -1,51 +1,77 @@
 #!/usr/bin/env node
 
 var program = require('commander');
+var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
- 
-var compRoot = 'src/comp'
-var contentMap = {
-    'tpl': '',
-    'scss': '.o-{{componentName}} {\r\n}',
-    'js': "define('comp/{{componentName}}/index', [{{deps}}], function () {\r\n})",
+
+var defaultConfig = require('./config.js');
+
+if (fs.existsSync(userConfig)) {
+    configFile = require(userConfig);
 }
+
+var userConfig = require(path.join(process.cwd(), '.compscaf'));
+ 
+var config = _.assign({}, defaultConfig, userConfig);
+var compRoot = config.cwd;
+var contentMap = config.contentTpl;
+var regx = config.varRegx;
+var extension = config.extension;
+var defaultNames = config.defaultName;
+
 program
   .version('0.0.1')
-  .option('-r, --cwd [name]', 'set a cwd, default is src/comp')
   .option('-o, --comp [name]', 'init a compoment : required')
   .option('-t, --tpl  [name]', 'init a tpl   file, default is main ')
-  .option('-s, --scss [name]', 'init a scss  file, default is base ')
+  .option('-s, --css [name]', 'init a css  file, default is base ')
   .option('-j, --js   [name]', 'init a entry file, default is index')
-  .option('-a, --all', 'init all file[tpl/scss/js]')
+  .option('-a, --all', 'init all file[tpl/css/js]')
   .option('-f, --force', 'init a compoment, remove the old one if extis')
   .option('-c, --clear', 'clear a component, remove all file in the component dir')
   .parse(process.argv);
  
+
+var initDeps = function (deps) {
+    var deps = config.baseDeps || [];
+    _.forEach(deps, function (dep, k) {
+        deps[k] = "'" + deps + "'";
+    });
+    return deps;
+}
+var parseDepName = function (dep, regx) {
+    return '$' + dep.replace(regx[0], regx[1]);
+}
+var initDepsVars = function (deps) {
+    var depsVars =  [];
+    var baseRegx = regx.baseDep;
+    _.forEach(deps, function (dep) {
+        depsVars.push(parseDepName(dep, baseRegx));
+    });
+    return depsVars;
+}
+
 starter();
 
 function starter() {
     var compName = program.comp;
     var force = program.force;
     var isClear = program.clear;
-    var cwd = program.cwd;
 
     var TYPE = Object.prototype.toString,
         STRING = TYPE.call(''),
         BOOL = TYPE.call(true);
 
-    if (TYPE.call(cwd) === STRING) {
-        compRoot = cwd;
-    }
     if (isClear) {
         clear();
         return;
     }
-    var deps = [];
+    var deps = initDeps();
+    var depsVars = initDepsVars(deps);
     if (!initComponent(compName)) {
-        initFiles('tpl', 'main', 'html')
-        initFiles('scss', 'base', 'scss')
-        initFiles('js', 'index', 'js')
+        initFiles('tpl')
+        initFiles('css')
+        initFiles('js') 
     }
 
     function initComponent(o) {
@@ -79,8 +105,11 @@ function starter() {
         fullPath = path.resolve(path.join(compRoot, compName));
         rmDir(fullPath);
     }
-    function initFiles(type, defaultName, prefix, required) {
+    function initFiles(type) {
         var o = program[type] || program.all;
+        var regxType = regx[type]; 
+        var extType = extension[type] || type;
+        var defaultName = defaultNames[type]; 
         if (!o) return;
         var targetName;
         var isError = false;
@@ -103,14 +132,18 @@ function starter() {
             makeError(type + ' is required');
             return isError;
         }
-        targetName += '.' + prefix;
+        targetName += '.' + extType;
         fullPath = path.resolve(path.join(compRoot, compName, targetName));
         contentTpl = compiler(contentTpl, {
-            componentName: compName,
-            deps: deps.join(', ')
+            comp: compName,
+            deps: deps.join(', '),
+            depsVars: depsVars.join(', ')
         });
         fs.writeFileSync(fullPath, contentTpl)
         deps.push("'./" + targetName + "'");
+        if (regxType && regxType.length === 2) {
+            depsVars.push(parseDepName(targetName, regxType));
+        }
     }
 }
 

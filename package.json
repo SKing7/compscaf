@@ -13,7 +13,8 @@
   "author": "sking7",
   "license": "ISC",
   "dependencies": {
-    "commander": "^2.8.1"
+    "commander": "^2.8.1",
+    "lodash": "^3.9.3"
   },
   "bin": {
     "compscaf": "index.js"
