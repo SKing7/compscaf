@@ -16,11 +16,12 @@
     
 
 ##sample
-    
+```shell
     ./node_modules/.bin/compscaf -r './' -o test 
     ./node_modules/.bin/compscaf -r './' -o test -c 
     ./node_modules/.bin/compscaf -r './' -o test -fjts 
     ./node_modules/.bin/compscaf -r './' -o test -s common -j entry
+```
 
 ##config
 自定义配置文件：[process.cwd()]/.compscaf.js
