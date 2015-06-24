@@ -140,7 +140,7 @@ function starter() {
         fullPath = path.resolve(path.join(compRoot, compName, targetName));
         contentTpl = compiler(contentTpl, {
             comp: compName,
-            EOL: endOfLine;
+            EOL: endOfLine,
             deps: deps.join(', '),
             depsVars: depsVars.join(', ')
         });
