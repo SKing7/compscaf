@@ -2,8 +2,8 @@ module.exports = {
     'cwd': './src/comp',
     'contentTpl': {
         'tpl': '<div class="o-{{comp}}"></div>',
-        'css': '.o-{{comp}} {\r\n}',
-        'js': "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {\r\n})",
+        'css': '.o-{{comp}} {{{EOL}}}',
+        'js': "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})",
     },
     'baseDeps': ['base/compbase'],
     'varRegx' : {

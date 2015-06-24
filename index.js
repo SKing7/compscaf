@@ -4,6 +4,7 @@ var program = require('commander');
 var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
+var endOfLine = require('os').EOL;
 
 var defaultConfig = require('./config.js');
 
@@ -139,6 +140,7 @@ function starter() {
         fullPath = path.resolve(path.join(compRoot, compName, targetName));
         contentTpl = compiler(contentTpl, {
             comp: compName,
+            EOL: endOfLine;
             deps: deps.join(', '),
             depsVars: depsVars.join(', ')
         });
