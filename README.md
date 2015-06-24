@@ -14,15 +14,25 @@
     -f, --force      :  init a compoment, remove the old one if extis
     -c, --clear      :  clear a component, remove all file in the component dir
     
+
+##sample
+    
+    ./node_modules/.bin/compscaf -r './' -o test 
+    ./node_modules/.bin/compscaf -r './' -o test -c 
+    ./node_modules/.bin/compscaf -r './' -o test -fjts 
+    ./node_modules/.bin/compscaf -r './' -o test -s common -j entry
+
 ##config
+自定义配置文件：[process.cwd()]/.compscaf.js
 ####cwd
-组件目录
+组件目录，相对于process.cwd()
 ####contentTpl
 类型文件对应的初始化内容，目前支持变量
 
     comp：组件名
     deps：组件依赖
     depsVar：组件变量名
+    
 ####baseDeps
 基础依赖
 ####varRegx
@@ -54,15 +64,7 @@ module.exports = {
         'tpl': 'main'
     }
 }
-
-##sample
-    
-    ./node_modules/.bin/compscaf -r './' -o test 
-    ./node_modules/.bin/compscaf -r './' -o test -c 
-    ./node_modules/.bin/compscaf -r './' -o test -fjts 
-    ./node_modules/.bin/compscaf -r './' -o test -s common -j entry
-
-
+```
 ##test
 
 ```shell
