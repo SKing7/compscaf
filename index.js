@@ -35,7 +35,7 @@ program
 var initDeps = function (deps) {
     var deps = config.baseDeps || [];
     _.forEach(deps, function (dep, k) {
-        deps[k] = "'" + deps + "'";
+        deps[k] = "'" + dep + "'";
     });
     return deps;
 }
