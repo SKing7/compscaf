@@ -1,11 +1,11 @@
 #组件化脚手架
 内部组件化脚手架程序
 
-##usage
+##INSTALL
 
     npm install compscaf
 
-##option
+##OPTION
 
     -o, --comp [name]:  init a compoment : required
     -t, --tpl  [name]:  init a tpl   file, default [name] is main 
@@ -15,7 +15,7 @@
     -c, --clear      :  clear a component, remove all file in the component dir
     
 
-##sample
+###USAGE
 ```shell
     ./node_modules/.bin/compscaf -r './' -o test 
     ./node_modules/.bin/compscaf -r './' -o test -c 
@@ -23,7 +23,7 @@
     ./node_modules/.bin/compscaf -r './' -o test -s common -j entry
 ```
 
-##config
+##CONFIG
 自定义配置文件：[process.cwd()]/.compscaf.js
 ####cwd
 组件目录，相对于process.cwd()
@@ -43,6 +43,7 @@
 ####defaultName
 默认名称
 
+###USAGE
 ```js
 module.exports = {
     'cwd': './src/comp',
@@ -66,7 +67,7 @@ module.exports = {
     }
 }
 ```
-##test
+##TEST
 
 ```shell
 
