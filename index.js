@@ -9,7 +9,7 @@ var defaultConfig = require('./config.js');
 
 var userConfig;
 if (fs.existsSync(userConfig)) {
-    userConfig = require(path.join(process.cwd(), '.compscaf'));
+    userConfig = require(path.join(process.cwd(), '.compscaf.js'));
 }
 
  
@@ -40,7 +40,10 @@ var initDeps = function (deps) {
     return deps;
 }
 var parseDepName = function (dep, regx) {
-    return '$' + dep.replace(regx[0], regx[1]);
+    if (regx && regx.length === 2) {
+        return '$' + dep.replace(regx[0], regx[1]);
+    }
+    return '$unknown';
 }
 var initDepsVars = function (deps) {
     var depsVars =  [];
