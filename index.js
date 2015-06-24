@@ -7,9 +7,9 @@ var fs = require('fs');
 
 var defaultConfig = require('./config.js');
 
-var userConfig;
+var userConfig = path.join(process.cwd(), '.compscaf.js');
 if (fs.existsSync(userConfig)) {
-    userConfig = require(path.join(process.cwd(), '.compscaf.js'));
+    userConfig = require(userConfig);
 }
 
  
