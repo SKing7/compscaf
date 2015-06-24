@@ -1,6 +1,6 @@
 {
   "name": "compscaf",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "组件化脚手架工具",
   "main": "index.js",
   "scripts": {

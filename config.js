@@ -1,5 +1,5 @@
 module.exports = {
-    'cwd': './',
+    'cwd': './src/comp',
     'contentTpl': {
         'tpl': '<div class="o-{{comp}}"></div>',
         'css': '.o-{{comp}} {\r\n}',

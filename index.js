@@ -7,11 +7,11 @@ var fs = require('fs');
 
 var defaultConfig = require('./config.js');
 
+var userConfig;
 if (fs.existsSync(userConfig)) {
-    configFile = require(userConfig);
+    userConfig = require(path.join(process.cwd(), '.compscaf'));
 }
 
-var userConfig = require(path.join(process.cwd(), '.compscaf'));
  
 var config = _.assign({}, defaultConfig, userConfig);
 var compRoot = config.cwd;
