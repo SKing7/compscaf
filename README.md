@@ -1,5 +1,5 @@
 #组件化脚手架
-内部组件化脚手架程序
+组件化脚手架程序
 
 ##INSTALL
 
@@ -23,8 +23,8 @@
     ./node_modules/.bin/compscaf -r './' -o test -s common -j entry
 ```
 
-##CONFIG
-自定义配置文件：[process.cwd()]/.compscaf.js
+##Common Config
+自定义配置文件：process.cwd()/.compscaf.js
 ####cwd
 组件目录，相对于process.cwd()
 ####contentTpl
@@ -34,14 +34,14 @@
     deps：组件依赖
     depsVar：组件变量名
     
-####baseDeps
-基础依赖
-####varRegx
+####baseDeps [Array:String]
+基础依赖，入口文件的通用依赖模块
+####varRegx[Object{:type-> Array[RegExp, replacement]}]
 变量匹配正则
-####extension
-文件类型
-####defaultName
-默认名称
+####extension[Object{:type-> String}]
+文件扩展名
+####defaultName[Object{:type-> String}]
+默认文件名（不含文件后缀）
 
 ###USAGE
 ```js
