@@ -2,7 +2,7 @@ module.exports = {
     'cwd': './src/comp',
     'contentTpl': {
         'tpl': '<div class="o-{{comp}}"></div>',
-        'css': '.o-{{comp}} {{{EOL}}}',
+        'scss': '.o-{{comp}} {{{EOL}}}',
         'js': "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})",
     },
     'baseDeps': ['base/compbase'],
@@ -11,11 +11,12 @@ module.exports = {
         'tpl': [/^([^\.]+).+$/g, '$1Tpl']
     },
     'extension': {
-        'tpl': 'html'
+        'tpl': 'html',
+        'scss': 'scss',
     },
     'defaultName': {
         'js': 'index',
-        'css': 'base',
+        'scss': 'base',
         'tpl': 'main'
     }
 }

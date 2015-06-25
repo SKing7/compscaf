@@ -25,7 +25,7 @@ program
   .version('0.0.1')
   .option('-o, --comp [name]', 'init a compoment : required')
   .option('-t, --tpl  [name]', 'init a tpl   file, default is main ')
-  .option('-s, --css [name]', 'init a css  file, default is base ')
+  .option('-s, --scss [name]', 'init a scss  file, default is base ')
   .option('-j, --js   [name]', 'init a entry file, default is index')
   .option('-a, --all', 'init all file[tpl/css/js]')
   .option('-f, --force', 'init a compoment, remove the old one if extis')
@@ -74,7 +74,7 @@ function starter() {
     var depsVars = initDepsVars(deps);
     if (!initComponent(compName)) {
         initFiles('tpl')
-        initFiles('css')
+        initFiles('scss')
         initFiles('js') 
     }
 
