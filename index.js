@@ -26,8 +26,9 @@ program
   .option('-o, --comp [name]', 'init a compoment : required')
   .option('-t, --tpl  [name]', 'init a tpl   file, default is main ')
   .option('-s, --scss [name]', 'init a scss  file, default is base ')
+  .option('-s, --scss [name]', 'init a scss  file, default is base ')
   .option('-j, --js   [name]', 'init a entry file, default is index')
-  .option('-a, --all', 'init all file[tpl/css/js]')
+  .option('-a, --all', 'init all file[tpl/scss/js]')
   .option('-f, --force', 'init a compoment, remove the old one if extis')
   .option('-c, --clear', 'clear a component, remove all file in the component dir')
   .parse(process.argv);
@@ -42,7 +43,7 @@ var initDeps = function (deps) {
 }
 var parseDepName = function (dep, regx) {
     if (regx && regx.length === 2) {
-        return '$' + dep.replace(regx[0], regx[1]);
+        return dep.replace(regx[0], regx[1]);
     }
     return '$unknown';
 }
