@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 
+var YAML = require('yamljs');
 var program = require('commander');
 var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 var endOfLine = require('os').EOL;
 
-var defaultConfig = require('./config.js');
+var defaultConfig = YAML.load('./config.yml');
 
-var userConfig = path.join(process.cwd(), '.compscaf.js');
+var userConfig = path.join(process.cwd(), 'compscaf.yml');
 if (fs.existsSync(userConfig)) {
-    userConfig = require(userConfig);
+    userConfig = YAML.load(userConfig);
 }
 
  
@@ -42,8 +43,8 @@ var initDeps = function (deps) {
     return deps;
 }
 var parseDepName = function (dep, regx) {
-    if (regx && regx.length === 2) {
-        return dep.replace(regx[0], regx[1]);
+    if (regx && regx.length >= 2) {
+        return dep.replace(new RegExp(regx[0], regx[2]), regx[1]);
     }
     return '$unknown';
 }
@@ -147,7 +148,7 @@ function starter() {
         });
         fs.writeFileSync(fullPath, contentTpl)
         deps.push("'./" + targetName + "'");
-        if (regxType && regxType.length === 2) {
+        if (regxType && regxType.length >= 2) {
             depsVars.push(parseDepName(targetName, regxType));
         }
     }
