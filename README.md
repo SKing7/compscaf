@@ -28,9 +28,11 @@
 自定义配置文件：`${process.cwd}/compscaf.yml`
 ####cwd
 `String`
+
 组件目录，相对于`process.cwd()`
 ####contentTpl
 `Object{:type-> String}`
+
 类型文件对应的初始化内容，目前支持变量
 
     comp：组件名
@@ -40,15 +42,19 @@
     
 ####baseDeps
 `Array[String]`
+
 基础依赖，入口文件的通用依赖模块
 ####varRegx
 `Object{:type-> Array[RegExp, replacement]}`
+
 变量匹配正则
 ####extension
 `Object{:type-> String}`
+
 文件扩展名
 ####defaultName
 `Object{:type-> String}`
+
 默认文件名（不含文件后缀）
 ###Default Config
 ```yml
