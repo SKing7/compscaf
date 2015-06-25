@@ -82,7 +82,9 @@ defaultName:
 ##TEST
 
 `./node_modules/.bin/compscaf -o test -af`
-生成指定名称test组件的目录，以及scss，entry js，tpl资源文件，并预先填充内容，默认配置下，组件目录下生成
+生成指定名称test组件的目录，以及scss，entry js，tpl资源文件，并预先填充内容
+
+默认配置下，组件目录下生成
 
     ├── base.scss
     ├── index.js
