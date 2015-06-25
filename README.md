@@ -1,28 +1,6 @@
 #组件化脚手架
 组件化脚手架程序
 
-生成指定名称组件目录，scss，entry js，tpl文件，并预先填充内容，默认配置下，组件目录下生成
-
-    ├── base.scss
-    ├── index.js
-    └── main.html
-    
-####base.scss
-```css
-.o-test {
-}
-```
-####index.js
-```js
-define('comp/test/index', ['./main.html', './base.scss'], function ($mainTpl) {
-})
-```
-####main.html
-```html
-<div class="o-test">
-</div>
-```
-
 ##INSTALL
 
     npm install compscaf
@@ -103,12 +81,25 @@ defaultName:
 ```
 ##TEST
 
-```shell
+`./node_modules/.bin/compscaf -o test -af`
+生成指定名称test组件的目录，以及scss，entry js，tpl资源文件，并预先填充内容，默认配置下，组件目录下生成
 
-    ./node_modules/.bin/compscaf -rf 'src/comp' -o searchbox -jst
-    #tree src/comp/searchbox
-    src/comp/searchbox/
     ├── base.scss
     ├── index.js
     └── main.html
+    
+####base.scss
+```css
+.o-test {
+}
+```
+####index.js
+```js
+define('comp/test/index', ['./main.html', './base.scss'], function ($mainTpl) {
+})
+```
+####main.html
+```html
+<div class="o-test">
+</div>
 ```
