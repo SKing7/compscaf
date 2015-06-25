@@ -58,14 +58,14 @@
 默认文件名（不含文件后缀）
 ###Default Config
 ```yml
-cwd: ./src/comp
+cwd: './'
 
 contentTpl:
     tpl: '<div class="o-{{comp}}">{{EOL}}</div>'
     scss: '.o-{{comp}} {{{EOL}}}'
     js: "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})"
 
-baseDeps: ['base/compbase']
+baseDeps: []
 
 varRegx :
     baseDep: [ ".+\/([^\/]+)'$" , '$$$1']
@@ -81,12 +81,27 @@ defaultName:
 ```
 ##TEST
 
-```shell
+`./node_modules/.bin/compscaf -o test -af`
+生成指定名称test组件的目录，以及scss，entry js，tpl资源文件，并预先填充内容
 
-    ./node_modules/.bin/compscaf -rf 'src/comp' -o searchbox -jst
-    #tree src/comp/searchbox
-    src/comp/searchbox/
+默认配置下，组件目录下生成
+
     ├── base.scss
     ├── index.js
     └── main.html
+    
+####base.scss
+```css
+.o-test {
+}
+```
+####index.js
+```js
+define('comp/test/index', ['./main.html', './base.scss'], function ($mainTpl) {
+})
+```
+####main.html
+```html
+<div class="o-test">
+</div>
 ```
