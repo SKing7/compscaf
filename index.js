@@ -27,7 +27,6 @@ program
   .option('-o, --comp [name]', 'init a compoment : required')
   .option('-t, --tpl  [name]', 'init a tpl   file, default is main ')
   .option('-s, --scss [name]', 'init a scss  file, default is base ')
-  .option('-s, --scss [name]', 'init a scss  file, default is base ')
   .option('-j, --js   [name]', 'init a entry file, default is index')
   .option('-a, --all', 'init all file[tpl/scss/js]')
   .option('-f, --force', 'init a compoment, remove the old one if extis')
