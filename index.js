@@ -7,7 +7,7 @@ var path = require('path');
 var fs = require('fs');
 var endOfLine = require('os').EOL;
 
-var defaultConfig = YAML.load('./config.yml');
+var defaultConfig = YAML.load(path.join(__dirname, './config.yml'));
 
 var userConfig = path.join(process.cwd(), 'compscaf.yml');
 if (fs.existsSync(userConfig)) {
