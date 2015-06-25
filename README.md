@@ -9,8 +9,9 @@
 
     -o, --comp [name]:  init a compoment : required
     -t, --tpl  [name]:  init a tpl   file, default [name] is main 
-    -s, --css [name]:  init a css  file, default [name] is base 
+    -s, --scss [name]:  init a scss  file, default [name] is base 
     -j, --js   [name]:  init a entry file, default [name] is index
+    -a, --all        :  init all file[tpl/scss/js]
     -f, --force      :  init a compoment, remove the old one if extis
     -c, --clear      :  clear a component, remove all file in the component dir
     
@@ -24,10 +25,14 @@
 ```
 
 ##Common Config
-自定义配置文件：process.cwd()/.compscaf.js
+自定义配置文件：`${process.cwd}/compscaf.yml`
 ####cwd
-组件目录，相对于process.cwd()
+`String`
+
+组件目录，相对于`process.cwd()`
 ####contentTpl
+`Object{:type-> String}`
+
 类型文件对应的初始化内容，目前支持变量
 
     comp：组件名
@@ -35,38 +40,44 @@
     depsVar：组件变量名
     EOL： 换行符
     
-####baseDeps [Array:String]
-基础依赖，入口文件的通用依赖模块
-####varRegx[Object{:type-> Array[RegExp, replacement]}]
-变量匹配正则
-####extension[Object{:type-> String}]
-文件扩展名
-####defaultName[Object{:type-> String}]
-默认文件名（不含文件后缀）
+####baseDeps
+`Array[String]`
 
-###USAGE
-```js
-module.exports = {
-    'cwd': './src/comp',
-    'contentTpl': {
-        'tpl': '<div class="o-{{comp}}"></div>',
-        'css': '.o-{{comp}} {{{EOL}}}',
-        'js': "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})",
-    },
-    'baseDeps': ['base/compbase'],
-    'varRegx' : {
-        'baseDep': [/.+\/([^\/]+)'$/, '$1'],
-        'tpl': [/^([^\.]+).+$/g, '$1Tpl']
-    },
-    'extension': {
-        'tpl': 'html'
-    },
-    'defaultName': {
-        'js': 'index',
-        'css': 'base',
-        'tpl': 'main'
-    }
-}
+基础依赖，入口文件的通用依赖模块
+####varRegx
+`Object{:type-> Array[RegExp, replacement]}`
+
+变量匹配正则
+####extension
+`Object{:type-> String}`
+
+文件扩展名
+####defaultName
+`Object{:type-> String}`
+
+默认文件名（不含文件后缀）
+###Default Config
+```yml
+cwd: ./src/comp
+
+contentTpl:
+    tpl: '<div class="o-{{comp}}">{{EOL}}</div>'
+    scss: '.o-{{comp}} {{{EOL}}}'
+    js: "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})"
+
+baseDeps: ['base/compbase']
+
+varRegx :
+    baseDep: [ ".+\/([^\/]+)'$" , '$$$1']
+    tpl: [ "([^\.]+).+$" , "$$$1Tpl"]
+
+extension:
+    tpl: 'html'
+
+defaultName:
+    js: 'index'
+    scss: 'base'
+    tpl: 'main'
 ```
 ##TEST
 
