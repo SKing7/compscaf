@@ -33,6 +33,7 @@
     comp：组件名
     deps：组件依赖
     depsVar：组件变量名
+    EOL： 换行符
     
 ####baseDeps [Array:String]
 基础依赖，入口文件的通用依赖模块
@@ -49,8 +50,8 @@ module.exports = {
     'cwd': './src/comp',
     'contentTpl': {
         'tpl': '<div class="o-{{comp}}"></div>',
-        'css': '.o-{{comp}} {\r\n}',
-        'js': "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {\r\n})",
+        'css': '.o-{{comp}} {{{EOL}}}',
+        'js': "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})",
     },
     'baseDeps': ['base/compbase'],
     'varRegx' : {
