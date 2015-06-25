@@ -1,6 +1,28 @@
 #组件化脚手架
 组件化脚手架程序
 
+生成指定名称组件目录，scss，entry js，tpl文件，并预先填充内容，默认配置下，组件目录下生成
+
+    ├── base.scss
+    ├── index.js
+    └── main.html
+    
+####base.scss
+```css
+.o-test {
+}
+```
+####index.js
+```js
+define('comp/test/index', ['./main.html', './base.scss'], function ($mainTpl) {
+})
+```
+####main.html
+```html
+<div class="o-test">
+</div>
+```
+
 ##INSTALL
 
     npm install compscaf
