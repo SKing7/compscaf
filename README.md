@@ -58,14 +58,14 @@
 默认文件名（不含文件后缀）
 ###Default Config
 ```yml
-cwd: ./src/comp
+cwd: './'
 
 contentTpl:
     tpl: '<div class="o-{{comp}}">{{EOL}}</div>'
     scss: '.o-{{comp}} {{{EOL}}}'
     js: "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})"
 
-baseDeps: ['base/compbase']
+baseDeps: []
 
 varRegx :
     baseDep: [ ".+\/([^\/]+)'$" , '$$$1']
