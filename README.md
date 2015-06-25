@@ -9,8 +9,9 @@
 
     -o, --comp [name]:  init a compoment : required
     -t, --tpl  [name]:  init a tpl   file, default [name] is main 
-    -s, --css [name]:  init a css  file, default [name] is base 
+    -s, --scss [name]:  init a scss  file, default [name] is base 
     -j, --js   [name]:  init a entry file, default [name] is index
+    -a, --all        :  init all file[tpl/scss/js]
     -f, --force      :  init a compoment, remove the old one if extis
     -c, --clear      :  clear a component, remove all file in the component dir
     
@@ -45,28 +46,27 @@
 默认文件名（不含文件后缀）
 
 ###USAGE
-```js
-module.exports = {
-    'cwd': './src/comp',
-    'contentTpl': {
-        'tpl': '<div class="o-{{comp}}"></div>',
-        'css': '.o-{{comp}} {{{EOL}}}',
-        'js': "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})",
-    },
-    'baseDeps': ['base/compbase'],
-    'varRegx' : {
-        'baseDep': [/.+\/([^\/]+)'$/, '$1'],
-        'tpl': [/^([^\.]+).+$/g, '$1Tpl']
-    },
-    'extension': {
-        'tpl': 'html'
-    },
-    'defaultName': {
-        'js': 'index',
-        'css': 'base',
-        'tpl': 'main'
-    }
-}
+```yml
+cwd: ./src/comp
+
+contentTpl:
+    tpl: '<div class="o-{{comp}}">{{EOL}}</div>'
+    scss: '.o-{{comp}} {{{EOL}}}'
+    js: "define('comp/{{comp}}/index', [{{deps}}], function ({{depsVars}}) {{{EOL}}})"
+
+baseDeps: ['base/compbase']
+
+varRegx :
+    baseDep: [ ".+\/([^\/]+)'$" , '$$$1']
+    tpl: [ "([^\.]+).+$" , "$$$1Tpl"]
+
+extension:
+    tpl: 'html'
+
+defaultName:
+    js: 'index'
+    scss: 'base'
+    tpl: 'main'
 ```
 ##TEST
 
