@@ -1,5 +1,8 @@
 cwd: './'
 
+tpl:
+    dep: "'./{{comp}}/{{dep}}'"
+
 contentTpl:
     tpl: '<div class="o-{{comp}}">{{EOL}}</div>'
     scss: '.o-{{comp}} {{{EOL}}}'

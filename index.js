@@ -18,6 +18,7 @@ if (fs.existsSync(userConfig)) {
 var config = _.assign({}, defaultConfig, userConfig);
 var compRoot = config.cwd;
 var contentMap = config.contentTpl;
+var tpl = config.tpl;
 var regx = config.varRegx;
 var extension = config.extension;
 var defaultNames = config.defaultName;
@@ -143,10 +144,15 @@ function starter() {
             comp: compName,
             EOL: endOfLine,
             deps: deps.join(', '),
+            dep: targetName,
             depsVars: depsVars.join(', ')
         });
         fs.writeFileSync(fullPath, contentTpl)
-        deps.push("'./" + targetName + "'");
+        deps.push(compiler(tpl.dep, {
+            comp: compName,
+            EOL: endOfLine,
+            dep: targetName,
+        }));
         if (regxType && regxType.length >= 2) {
             depsVars.push(parseDepName(targetName, regxType));
         }
